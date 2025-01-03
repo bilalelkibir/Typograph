@@ -1,0 +1,95 @@
+mixin HeroHeader
+  section.pb-8.overflow-hidden#home
+    .container-small.text-center
+      //- Hero header tekst
+      h1.fs-3.fs-md-2.fs-xl-1.fw-black.mb-4#typewriter-title
+
+      //- Beschrijving
+      p.mb-5.mx-auto(style="font-family: 'Inter', sans-serif; width: 100%; max-width: 700px;"). 
+        Waar bestaande oplossingen tekortschieten, streven wij naar een uitstekende oplossing voor geautomatiseerd publiceren.
+
+      //- Call-to-action button
+      a.btn.btn-lg.btn-primary.rounded-pill.me-3(href='https://portal.typograph.nl/signup' role='button') Start je Typograph avontuur
+        span.fa-solid.fa-angle-right.ms-2.fs-9
+
+      //- Afbeeldingen voor verschillende apparaten
+      img.img-fluid.hero-image.desktop-only.mt-8(src=`${CWD}assets/img/bg/bg-34.png` alt='hero-header')
+      img.img-fluid.hero-image.mobile-only.mt-8(src=`${CWD}assets/img/bg/bg-50.png` alt='hero-header')
+
+      style.
+        /* Typing effect styling */
+        #typewriter-title {
+          display: inline-block;
+          overflow: hidden;
+          white-space: nowrap;
+          border-right: 2px solid #000; /* Knipperende cursor */
+          animation: blink-cursor 0.8s step-end infinite;
+        }
+
+        @keyframes blink-cursor {
+          from, to {
+            border-color: transparent;
+          }
+          50% {
+            border-color: black;
+          }
+        }
+         /* Desktop afbeelding standaard laten zien */
+        .desktop-only {
+          display: block;
+        }
+      
+        /* Mobiele afbeelding standaard verbergen */
+        .mobile-only {
+          display: none;
+        }
+      
+        /* Media query voor kleinere schermen */
+        @media (max-width: 768px) {
+          #typewriter-title {
+            font-size: 1.5rem; /* Maak de tekst kleiner */
+            line-height: 1.2; /* Verhoog de regelafstand */
+            white-space: normal; /* Laat tekst omslaan */
+          }
+          .desktop-only {
+            display: none;
+          }
+          .mobile-only {
+            display: block;
+          }
+        }
+
+    script.
+      const fullText = ["Online Creative", "Automation Platform"];
+      const typewriterElement = document.getElementById('typewriter-title');
+      let lineIndex = 0; 
+      let charIndex = 0;
+
+      function typeText() {
+        if (lineIndex < fullText.length) {
+          if (charIndex < fullText[lineIndex].length) {
+            const span = document.createElement('span');
+            if (lineIndex === 0 && charIndex < 6) {
+              span.style.color = "#007bff"; // Blauwe kleur voor "Online"
+            }
+            span.textContent = fullText[lineIndex][charIndex];
+            typewriterElement.appendChild(span);
+            charIndex++;
+            setTimeout(typeText, 100);
+          } else {
+            if (lineIndex < fullText.length - 1) {
+              const br = document.createElement('br');
+              typewriterElement.appendChild(br);
+            }
+            charIndex = 0;
+            lineIndex++;
+            setTimeout(typeText, 400);
+          }
+        } else {
+          typewriterElement.style.borderRight = "none";
+        }
+      }
+
+      window.onload = () => {
+        typeText();
+      };
