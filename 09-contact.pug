@@ -1,0 +1,45 @@
+mixin Contact
+  +Section('container-small px-lg-7 px-xxl-3').pb-8.pb-sm-10.pb-xl-14
+    .text-center.mb-7
+      h5.text-info.mb-3#contact Contact
+      h2.mb-2 Neem contact met ons op
+    .row.g-5.g-lg-5
+      .col-md-6.mb-5.mb-md-0.text-center.text-md-start
+        h3.mb-3 We helpen je graag verder!
+        p.mb-5 Heb je vragen of wil je meer informatie? Vul het formulier in, en we nemen zo snel mogelijk contact met je op!
+        // Flex container voor iconen
+        .row.w-100.d-flex.flex-md-column.flex-row
+          .col-6.col-md-12.d-flex.align-items-center
+            .icon-wrapper
+              span.uil.uil-phone.text-primary.fs-4.z-1(data-bs-theme="light")
+            .ms-3
+              a(href="tel:+30-6080848").fw-semibold.text-body.link-900.text-decoration-underline 030-6080848
+          .col-6.col-md-12.d-flex.align-items-center
+            .icon-wrapper
+              span.uil.uil-envelope.text-primary.fs-4.z-1(data-bs-theme="light")
+            .ms-3
+              a(href="mailto:hello@typograph.nl").fw-semibold.text-body.text-decoration-underline hello@typograph.nl
+          .col-6.col-md-12.d-flex.align-items-center
+            .icon-wrapper
+              span.uil.uil-file-alt.text-primary.fs-4.z-1(data-bs-theme="light")
+            .ms-3
+              a(href="https://www.kvk.nl/bestellen/#/94455619000003174425" target="_blank").fw-semibold.text-body.text-decoration-underline KVK 94455619
+          .col-6.col-md-12.d-flex.align-items-center
+            .icon-wrapper
+              span.uil.uil-map-marker.text-primary.fs-4.z-1(data-bs-theme="light")
+            .ms-3
+              a(
+                href="https://www.google.nl/maps/place/Get+Interactive+-+Digital+Agency/@52.0039732,5.0922704,17z/data=!3m1!4b1!4m6!3m5!1s0x47c6646cc751bcb7:0x20d7b3dc74025b71!8m2!3d52.0039732!4d5.0948507!16s%2Fg%2F1pp2tgz9f?hl=nl&entry=ttu&g_ep=EgoyMDI0MTExOS4yIKXMDSoASAFQAw%3D%3D", 
+                target="_blank"
+              ).fw-semibold.text-body.text-decoration-underline Dorpsstraat 50, 3433CM Nieuwegein
+      .col-md-6.text-center.text-md-start
+        h3.mb-3 Laat van je horen
+        p.mb-7 Heb je vragen of suggesties? We staan open om van je te leren. Neem gerust contact met ons op; we helpen je graag verder!
+        iframe(
+          src="form.html",
+          width="100%",
+          height="450",
+          style="border:0;",
+          allowfullscreen="",
+          loading="lazy"
+        )
