@@ -1,0 +1,583 @@
+append variables
+  -
+      var pricingItems = [
+      {
+        category: 'Gratis',
+        price: '€0',
+        cardClasses: 'border border-secondary hover-border-primary rounded-4',
+        features: [
+          { icon: 'fas fa-check text-primary', label: '3 templates voor samenwerking' },
+          { icon: 'fas fa-check text-primary', label: '1 GB opslag inbegrepen' },
+          { icon: 'fas fa-check text-primary', label: 'Afbeeldingen en web-PDF genereren' },
+          { icon: 'fas fa-check text-primary', label: 'Privéteams en projecten' },
+          { icon: 'fas fa-check text-primary', label: 'InDesign-bestanden importeren' },
+          { icon: 'fas fa-check text-primary', label: 'E-mail ondersteuning' }
+        ],
+        buyBtnClass: 'btn-outline-primary',
+      },
+      {
+        category: 'Premium',
+        price: '€50',
+        cardClasses: 'border border-2 border-primary rounded-4  premium-card',
+        features: [
+          { icon: 'fas fa-plus text-primary', label: 'Onbeperkte samenwerkingstemplates' },
+          { icon: 'fas fa-plus text-primary', label: '5 GB opslagruimte inbegrepen' },
+          { icon: 'fas fa-plus text-primary', label: 'Genereer druk-PDF’s (CMYK + Spot)' },
+          { icon: 'fas fa-plus text-primary', label: 'Genereer vanuit spreadsheets' },
+          { icon: 'fas fa-plus text-primary', label: 'Rest API & webhooks' },
+          { icon: 'fas fa-plus text-primary', label: 'Ondersteuning via e-mail en chat' }
+        ],
+        buyBtnClass: 'btn-primary',
+      },
+      {
+        category: 'Enterprise',
+        price: 'custom',
+        cardClasses: 'border border-secondary hover-border-primary rounded-4   free-enterprise-card',
+        features: [
+          { icon: 'fas fa-plus text-primary', label: 'Gepersonaliseerde opslagruimte' },
+          { icon: 'fas fa-plus text-primary', label: 'Typograph portaal' },
+          { icon: 'fas fa-plus text-primary', label: 'Typograph Editor integratie' },
+          { icon: 'fas fa-plus text-primary', label: 'Typograph Viewer integratie' },
+          { icon: 'fas fa-plus text-primary', label: 'Aangepaste integraties voor PIM of DAM' },
+          { icon: 'fas fa-plus text-primary', label: 'Premium Ondersteuning' }
+        ],
+        buyBtnClass2: 'btn-outline-primary',
+        contactUrl: '/contact.pug'
+      }
+    ]
+
+mixin PricingList(config, index, features)
+  li.d-flex.align-items-center(class=`${index === features.length - 1 ? 'mb-0' : 'mb-3'}`)
+    span.fa-li
+      if config.icon
+        i(class=config.icon)
+    p.mb-0
+      - var parts = config.label.split('(CMYK + Spot)')
+      = parts[0]
+      if parts.length > 1
+        span(class="small-text") (CMYK + Spot)
+      = parts[1]
+
+mixin Pricing
+  section.pricing
+    .container-small.position-static.pt-15.pt-md-5.pt-lg-2
+      .text-center.mb-3.mb-lg-7
+        h5#pricing.text-info.mb-3 Tarieven
+        h2.mb-2 Kies de deal die bij jou past
+      .row.g-1.mb-7.mb-lg-11
+        each item in pricingItems
+          .col-lg-4
+            .pricing-card
+              .card.bg-transparent(class=`${item.cardClasses} ${item.category === 'Premium' ? 'premium-card' : ''}`)
+                .card-body.p-4
+                  h3.mb-5= item.category
+                  h1.fs-3.d-flex.align-items-center.gap-1.mb-3 
+                    if item.price === 'custom'
+                      span.fs-3= item.price
+                    else
+                      span.fs-3= item.price
+                    if item.price !== 'custom'
+                      span.fs-8.fw-normal / maand
+                  if item.price === 'custom'
+                    a.btn.btn-lg.w-100.mb-7.rounded-pill(href="#contact" class=item.buyBtnClass2) Praat met een expert
+                  else
+                    a.btn.btn-lg.w-100.mb-7.rounded-pill(href='https://portal.typograph.nl/signup' class=item.buyBtnClass) Aan de slag
+                  h5.mb-4
+                    if item.category === 'Premium'
+                      | Alles in Gratis en
+                    else if item.category === 'Enterprise'
+                      | Alles in Premium en
+                    else
+                      | Inbegrepen
+                  ul.fa-ul.ps-4.m-0.pricing
+                    each listItem, index in item.features
+                      +PricingList(listItem, index, item.features)
+                      .text-center.mt-5
+        
+        .d-flex.justify-content-center
+          button.btn.btn-primary.rounded-pill#toggle-table-button(type="button" data-bs-toggle="collapse" data-bs-target="#pricing-table" aria-expanded="false" aria-controls="pricing-table" style="width: auto; padding: 0.75rem 1.5rem;") Bekijk alle functies
+
+
+    .collapse#pricing-table
+      .text-center
+      h2.mb-3.text-center.pt-1 Overzicht van alle functies
+      .table-responsive.mt-5
+        table(class='table')
+          thead
+            tr
+              th(scope='col')
+              th(scope='col') Gratis
+              th(scope='col') Premium
+              th(scope='col') Enterprise
+          tbody
+            tr
+              th(scope='row') Algemeen
+              td
+              td
+              td
+            tr
+              td(scope='row') Editor seats
+              td 1
+              td 5
+              td custom
+                        tr
+              td(scope='row') Uitgenodigde gebruikers 
+                small(view / comment permission)
+              td
+                i(class='fas fa-infinity text-primary')  
+              td
+                i(class='fas fa-infinity text-primary')  
+              td
+                i(class='fas fa-infinity text-primary')  
+            tr
+              td(scope='row') Samenwerkende sjablonen
+              td 3
+              td
+                i(class='fas fa-infinity text-primary')  
+              td
+                i(class='fas fa-infinity text-primary')  
+            tr
+              td(scope='row') Privé teams
+              td 1
+              td 1
+              td custom
+            tr
+              td(scope='row') Privé projecten
+              td 1
+              td
+                i(class='fas fa-infinity text-primary')  
+              td
+                i(class='fas fa-infinity text-primary') 
+
+            tr
+              td(scope='row') Opslag
+              td 1GB
+              td 5GB
+              td custom
+            tr
+              th(scope='row') Editor
+              td
+              td
+              td
+            tr
+              td(scope='row') Reacties
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Lettertypen
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Media
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Kenmerk X
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Publisher
+              td
+              td
+              td
+            tr
+              td(scope='row') Afbeeldingen genereren
+              td jpg, png, webp
+              td jpg, png, webp
+              td jpg, png, webp
+            tr
+              td(scope='row') Web PDF genereren
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Print PDF genereren
+                small(CMYK + Spot)
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Genereren uit spreadsheet
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Voeg aangepaste watervlak toe
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Voeg snijmarkeringen toe
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Converteer spreads naar enkele pagina's
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Discontinue paginering
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              th(scope='row') Converter
+              td
+              td
+              td
+            tr
+              td(scope='row') Importeer InDesign-bestanden
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              th(scope='row') Ondersteuning
+              td
+              td
+              td
+            tr
+              td(scope='row') Ticketondersteuning
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Chatondersteuning
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Telefoonondersteuning
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              th(scope='row') Aanpassingen op maat
+              td
+              td
+              td
+            tr
+              td(scope='row') Gepersonaliseerd Typograph Portal
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Ingebouwde integraties
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') API & webhooks
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+              td
+                span(data-feather='check' class='text-primary')
+            tr
+              td(scope='row') Aangepaste integraties
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='minus')
+              td
+                span(data-feather='check' class='text-primary')
+
+
+
+  style.
+        /* Algemene styling voor de premium card */
+        .premium-card {
+            transform: translateY(-15px);  
+            margin-top: -20px;
+            margin-bottom: -20px;  
+            box-shadow: 0px 6px 30px rgba(0, 123, 255, 0.4); 
+            z-index: 2; 
+            border-color: #0056b3; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+
+        .premium-card:hover {
+            transform: translateY(0px); 
+            box-shadow: 0px 12px 40px rgba(0, 123, 255, 0.5); 
+        }
+        
+
+        
+        /* Algemene styling voor de pricing card */
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 500px;
+            padding: 20px;
+        }
+
+        /* Styling voor tekst */
+        .small-text {
+            font-size: 0.75em; 
+            font-weight: normal; 
+        }
+
+        /* Styling voor Font Awesome icoontjes */
+        .fas.fa-check {
+            display: inline-block;   
+            font-family: 'Font Awesome 5 Free';  
+            font-weight: 900; 
+            color: #007bff; 
+        }
+
+        /* Verbergde elementen */
+        .hidden {
+            display: none;
+        }
+        .collapse {
+          transition: height 1.2s ease !important; 
+        }
+        #pricing-table.collapsing {
+          height: 0;
+          transition: height 1.2s ease !important;
+        }
+        .collapsible-content {
+          margin-top: 1rem;
+          transition: all 1s ease-in-out; 
+        }
+        
+        #pricing-table {
+          margin-top: -80px; /* Verminder de ruimte tussen de tabel en de vorige secties */
+        }
+
+        /* Knop styling voor toggle */
+        button#toggle-table-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 50px;
+            padding: 10px 20px;
+        }
+
+        button#toggle-table-button:hover {
+            background-color: #0056b3;
+        }
+
+        button#toggle-table-button:focus {
+            outline: 2px solid #0056b3;
+        }
+
+        /* Tabel styling */
+        table.table {
+            border-collapse: collapse;
+            border: none;
+            width: 50%;  /* Volledige breedte van de container gebruiken */
+            margin: 0 auto; /* Centraal in de sectie */
+            padding: 0 15px; /* Zorgt voor ruimte aan de zijkanten van de tabel */
+            border-collapse: collapse;
+        }
+
+        .table-responsive {
+            overflow-x: auto; /* Zorg ervoor dat de tabel horizontaal kan scrollen op mobiele apparaten */
+            margin-bottom: 20px;
+        }
+        
+
+        /* Mobiele weergave */
+        @media (max-width: 768px) {
+            .pricing-card {
+                flex-direction: column;
+                justify-content: flex-start;
+                min-height: 400px;
+                height: auto;
+                margin-bottom: 1.5rem;
+                padding: 2rem;
+                
+            }
+            .border.border-secondary.hover-border-primary.rounded-4,
+            .border.border-2.border-primary.rounded-4.premium-card,
+            .border.border-secondary.hover-border-primary.rounded-4.free-enterprise-card {
+                padding: 1rem;
+                min-height: 300px; /* Optioneel */
+                width: 117%;
+            }
+
+
+            .premium-card {
+                transform: none;
+                margin: 0;
+                box-shadow: none;
+            }
+            /* Collapsing effect voor de tabel */
+            .collapse {
+                transition: height 1.2s ease !important; 
+            }
+
+            #pricing-table.collapsing {
+                height: 0;
+                transition: height 1.2s ease !important;
+            }
+
+            .collapsible-content {
+                margin-top: 1rem;
+                transition: all 1s ease-in-out;
+            }
+
+            .pricing li {
+                flex-direction: row; /* Houd tekst en icoontjes horizontaal */
+                gap: 8px;
+            }
+
+            .pricing li i {
+                font-size: 1.2rem;
+            }
+
+            .pricing li p {
+                font-size: 0.875rem; 
+            }
+
+            /* Verklein tekstgrootte voor kleine schermen */
+            .pricing-card h1.fs-3 {
+                font-size: 1.5rem;
+            }
+
+            .pricing-card h3 {
+                font-size: 1.25rem;
+            }
+            /*Zorg ervoor dat de tabel niet horizontaal scrollt*/
+        .table-responsive {
+          overflow-x: hidden; // Zorg ervoor dat er geen horizontale scroll is
+          -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+          border: none;  // Verwijder eventuele borders om de tabel netjes te houden
+        }
+
+        
+        
+
+        /* Kleinere schermen (bijv. smartphones) */
+        @media (max-width: 576px) {
+            .pricing-card {
+                padding: 1rem !important;
+                margin-bottom: 1.5rem;
+                
+            }
+
+            .pricing li p {
+                font-size: 0.75rem; 
+            }
+
+            .row.g-1 {
+                gap: 0.5rem; /* Verminder de gap voor kleinere schermen */
+            }
+
+            
+            h5#pricing {
+              font-size: 1rem;
+
+            /* Collapsing effect voor de tabel */
+            .collapse {
+                max-width: 100%; /* Tabel neemt volledige breedte in */
+                margin: auto; /* Centreer de tabel */
+                padding: 0 15px; /* Witte ruimte aan de zijkanten */
+                border-collapse: collapse;
+                overflow-x: hidden; /* Voorkom horizontaal scrollen */
+                table-layout: fixed; /* Zorg ervoor dat de kolommen gelijkmatig worden verdeeld */
+            }
+
+            #pricing-table.collapsing {
+                height: 0;
+                transition: height 1.2s ease !important;
+            }
+
+            .collapsible-content {
+                margin-top: 1rem;
+                transition: all 1s ease-in-out;
+            }
+            .container-small{
+              phoenix-gutter-x: 2rem;
+
+            }
+
+            h2.mb-2 {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Zorg ervoor dat de tabel goed leesbaar is bij grote schermen */
+        @media (min-width: 1400px) {
+            
+            }
+        }
+
+        /* Collapsing effect voor de tabel */
+        .collapse {
+            transition: height 1.2s ease !important; 
+        }
+
+        #pricing-table.collapsing {
+            height: 0;
+            transition: height 1.2s ease !important;
+        }
+
+        .collapsible-content {
+            margin-top: 1rem;
+            transition: all 1s ease-in-out;
+        }
