@@ -1,0 +1,128 @@
+extends layouts/LayoutTheme
+
+include mixins/landing/common/Navbar
+include mixins/landing/landing-2/Footer
+
+append styles
+  style.
+    body {
+      overflow-x: hidden; /* Voorkomt horizontale scrollbalken */
+    }
+    .form-control {
+      max-width: 100%; /* Zorgt ervoor dat formulierinvoer responsive is */
+      box-sizing: border-box;
+    }
+
+append scripts
+  script(src=`${CWD}vendors/isotope-layout/isotope.pkgd.min.js`)
+  script(src=`${CWD}vendors/imagesloaded/imagesloaded.pkgd.min.js`)
+  script(src=`${CWD}vendors/isotope-packery/packery-mode.pkgd.min.js`)
+  script(src=`${CWD}vendors/bigpicture/BigPicture.js`)
+  script(src=`${CWD}vendors/lottie/lottie.min.js`)
+  script(src=`${CWD}vendors/countup/countUp.umd.js`)
+  script(src!="https://maps.googleapis.com/maps/api/js?key=${APIGmap}&callback=initMap" async)
+
+append variables
+  - var attrsBody = { style: "--phoenix-scroll-margin-top: 1.2rem;", class: 'bg-body-emphasis' }
+  - var disableNavigationType = true
+  - var disableVerticalNavbarAppearance = true
+  - var disableHorizontalNavbarShape = true
+  - var disableHorizontalNavbarAppearance = true
+
+block mainContent
+  .container
+    form#contactForm.row.g-4(action="http://localhost:5000/php/verzend.php" method="POST")  // De actie hier is naar verzend.php
+      .col-12
+        .input-group.input-group-lg
+          input.form-control.bg-body-emphasis(
+            type="text"
+            name="name"
+            placeholder="Naam"
+            aria-label="Naam"
+            aria-describedby="inputGroup-sizing-lg"
+            required
+          )
+      .col-12
+        .input-group.input-group-lg
+          input.form-control.bg-body-emphasis(
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            aria-label="E-mail"
+            aria-describedby="inputGroup-sizing-lg"
+            required
+          )
+      .col-12
+        .input-group.input-group-lg
+          textarea.form-control.bg-body-emphasis(
+            rows="6"
+            name="message"
+            placeholder="Schrijf je bericht hier..."
+            aria-label="Bericht"
+            aria-describedby="inputGroup-sizing-lg"
+            required
+          )
+      .col-12.d-grid
+        button(type="submit").btn.btn-primary.btn-lg Versturen
+
+        
+    #successContainer(style="display: none; text-align: center; margin-top: 20px;")
+      div(style="font-size: 50px; color: green;") ✔
+      p(style="font-size: 18px;") Bedankt voor je bericht! We nemen snel contact met je op.
+
+
+    #errorMessage(style="display:none; background: lightcoral; padding: 10px; margin-top: 20px; border-radius: 5px;") Er is een fout opgetreden bij het verzenden van je bericht. Probeer het opnieuw.
+
+
+
+      script.
+        document.querySelector('#contactForm').addEventListener('submit', function(e) {
+          e.preventDefault(); // Voorkom het herladen van de pagina
+
+          // Verberg eerdere berichten
+          document.getElementById('successContainer').style.display = 'none';
+          document.getElementById('errorMessage').style.display = 'none';
+
+          var form = new FormData(this);
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', this.action, true);
+
+          xhr.onload = function() {
+            try {
+              if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+
+                if (response.status && response.status === 'success') {
+                  // Verberg formulier en toon succesbericht
+                  document.getElementById('contactForm').style.display = 'none';
+                  document.getElementById('successContainer').style.display = 'block';
+                } else {
+                  // Toon foutbericht
+                  document.getElementById('errorMessage').style.display = 'block';
+                }
+              } else {
+                // Toon foutbericht als de status geen 200 is
+                document.getElementById('errorMessage').style.display = 'block';
+              }
+            } catch (error) {
+              // Toon foutbericht bij een JSON-parsing probleem of andere fouten
+              console.error('Error processing response:', error);
+              document.getElementById('errorMessage').style.display = 'block';
+            }
+          };
+
+          xhr.onerror = function() {
+            // Toon foutbericht bij een netwerkfout
+            console.error('Network error occurred');
+            document.getElementById('errorMessage').style.display = 'block';
+          };
+
+          xhr.send(form); // Verstuur de formulierdata naar de server
+        });
+
+        // Reset de formulier en zichtbaarheid bij een volledige pagina refresh
+        window.addEventListener('load', function() {
+          document.getElementById('contactForm').style.display = 'block';
+          document.getElementById('successContainer').style.display = 'none';
+          document.getElementById('errorMessage').style.display = 'none';
+        });
