@@ -1,32 +1,56 @@
-# Typograph
+## Phoenix, a theme by ThemeWagon team.
 
-Dit project is gerealiseerd tijdens mijn stage bij Get Interactive. Het doel was om een voorpagina voor de website te ontwerpen en te ontwikkelen. Het project is uitgevoerd in samenwerking met een mede-stagiair. Hoewel het project nog niet volledig is afgerond, deel ik hierbij het resultaat dat ik tijdens mijn stageperiode heb kunnen realiseren.
+---
 
-Over het project Opdrachtgever: Get Interactive Projectdoel: Het ontwikkelen van een aantrekkelijke en functionele voorpagina voor de website. Samenwerking: Dit project is uitgevoerd in samenwerking met een andere stagiair. Status: Het project is niet volledig afgerond, omdat mijn stageperiode is geëindigd.
+Unzip the **Phoenix-v1.6.0.zip** to any folder and open a command line or terminal at that location. theme's dev tools require [Node](https://nodejs.org/en/) and [Git](https://git-scm.com/) . If you do not have them in your machine, please install their latest stable version from their corresponding website. As you have **Node and Git installed and accessible from your terminal or command line**, install [Gulp CLI](https://gulpjs.com/) package globally with the following command:
 
-Mijn bijdragen en functionaliteiten Tijdens het project heb ik aan de volgende onderdelen gewerkt:
+```
+npm i gulp-cli -g
+```
 
-Navbar: Ik heb een navigatiebalk ontworpen en ontwikkeld. Features Tabel: Een sectie met drie kolommen, elk voorzien van een knop "Lees meer" en een bijbehorend icoon. Templates: Ik heb de templates gemaakt; de huidige afbeeldingen zijn voorbeelden en niet de definitieve versies. Tarieven Cards en Pricing Tabel: Secties met visueel aantrekkelijke kaarten en een tabel voor het tonen van prijzen. Contactformulier: Een ingebouwd formulier via een iframe, met e-mails die worden verstuurd via PHP-code. Gebruikte technologieën Pug: Een templatesysteem dat HTML vereenvoudigt door een beknopte syntax. (Zie uitleg hieronder.) CSS en SCSS: Voor de styling van de website. JavaScript: Voor interactieve elementen. PHP: Voor de server-side functionaliteit, zoals het verzenden van e-mails. Gulp: Gebruikt als taskrunner voor het bouwen en bekijken van de website.
+When you’re done, install the rest of the theme’s dependencies with:
 
-Wat is Pug? Pug is een template-engine die HTML vereenvoudigt door een meer leesbare en minimalistische syntax. In plaats van uitgebreide tags kun je met Pug een structuur creëren door inspringingen te gebruiken. Dit versnelt het schrijfproces en verbetert de leesbaarheid van de code.
+```
+npm i
+```
 
-Voorbeeld van Pug-code:
+Now run:
 
-doctype html
-html
-head
-title Voorpagina
-link(rel="stylesheet", href="styles.css")
-body
-header
-h1 Welkom op de Voorpagina
-main
-p Dit is een voorbeeld van een Pug-template.
+```
+gulp
+```
 
-Uitdagingen en leerpunten Tijdens het project hebben we enkele uitdagingen overwonnen:
+Running gulp will compile the SCSS, transpile the javascript, copy all required libraries form `node_modules`
+to the corresponding `public/assets/vendors` directory and will open a browser window to `public/index.html`
 
-Nieuwe technologieën: Het werken met nieuwe tools zoals Pug, SCSS en PHP bracht aanvankelijk veel fouten met zich mee. Feedbackrondes: Elke week presenteerden we een demo aan de klant, wat hielp om continu te verbeteren. Planning: Aanvankelijk hadden we moeite met de planning, maar dit hebben we gaandeweg verbeterd. Samenwerking: De samenwerking verliep goed. Bij meningsverschillen vonden we snel oplossingen, en we controleerden elkaars wijzigingen zorgvuldig voordat we commits en pushes uitvoerden.
+All of the following folders are monitored for changes, which will tell the browser to reload automatically after any changes are made:
 
-Wat ik heb geleerd: Het werken met nieuwe technologieën zoals Pug, SCSS en PHP. Ervaring opgedaan in een professionele kantooromgeving. Het belang van samenwerking en communicatie in een team. Het opzetten van een efficiënte workflow met version control tools zoals Bitbucket.
+```
+public/assets/fonts/
+public/assets/video/
+public/assets/img/
+public/vendors
+src/pug/
+src/scss/
+src/js/
+```
 
-Bedankt Ik wil Get Interactive en mijn mede-stagiair bedanken voor de begeleiding en samenwerking tijdens deze leerzame stageperiode.
+Now you can edit any pug file from `src/pug`, change SCSS variable with `scss/\_user-variables.scss`, or write your own SCSS code in `scss/\_user.scss` and add or update javaScript from `src/js` directory.
+
+**Running the gulp command will discard and regenerate all the files in following directories:**
+
+```
+public/**/*.html
+public/assets/css/
+public/assets/js/
+public/vendors
+```
+
+Hit **Ctrl+C** or just close the command line window to stop the server.
+
+Happy editing!
+
+### Design File
+
+Get the figma design file here:
+[https://www.figma.com/design/4r1OVvVwGd91iodJPEzhm5/Phoenix-Distributed-(v-1.19.0)?node-id=1248-35561&t=v2B2Ms7hIbPCkWSd-1](https://www.figma.com/design/4r1OVvVwGd91iodJPEzhm5/Phoenix-Distributed-(v-1.19.0)?node-id=1248-35561&t=v2B2Ms7hIbPCkWSd-1)
