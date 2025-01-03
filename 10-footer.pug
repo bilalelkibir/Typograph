@@ -1,0 +1,26 @@
+mixin FooterLanding
+  +Section("container-small px-lg-7 px-xxl-3").bg-dark.dark__bg-gray-1000(data-bs-theme="dark")
+    .row.gx-xxl-8.gy-5.align-items-center.mb-5
+      .col-xl-auto.text-center
+        a(href='/index.html#')
+          img(src=`${CWD}assets/img/icons/light-logo.svg` height="48" alt='' )
+      .col-xl-auto.flex-1
+        ul.list-unstyled.d-flex.justify-content-center.flex-wrap.mb-0.gap-3.gap-xl-8.pe-xl-5.pe-xxl-8.w-75.w-md-100.mx-auto
+          li
+            a.text-light.text-opacity-75(href="/index.html#functions" style="text-decoration: underline;") Features
+          li
+            a.text-light.text-opacity-75(href="/index.html#templates" style="text-decoration: underline;") Templates
+          li
+            a.text-light.text-opacity-75(href="/index.html#pricing" style="text-decoration: underline;") Tarieven
+          li
+            a.text-light.text-opacity-75(href="/index.html#accordion" style="text-decoration: underline;") FAQ
+          li
+            a.text-light.text-opacity-75(href="/index.html#contact" style="text-decoration: underline;") Contact
+
+      hr.border-top
+      .d-sm-flex.justify-content-between.align-items-center.text-center
+        p.text-body-tertiary.mb-0 Copyright © Typograph 2024
+        //- Flex-container voor Privacy en Terms
+        .d-flex.gap-3.justify-content-center.justify-content-sm-start(style="flex: 0;")
+          a(href="/privacy.html" class="text-body-tertiary") Privacy
+          a(href="/terms.html" class="text-body-tertiary") Gebruikersvoorwaarden
