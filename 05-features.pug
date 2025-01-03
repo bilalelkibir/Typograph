@@ -1,0 +1,136 @@
+//- Define the mixin for the Features section
+mixin Features
+  
+  .container-small.text-center
+    .row.g-0
+      .discover-functions.col-12
+        h5#functions.text-info.mb-3 Features
+        h2.text-center.mb-5 Ontdek onze features
+
+    section.container.py-5.text-center
+      .row.text-center.justify-content-center.align-items-start
+        
+        .col-md-4.mb-4.text-md-start.text-center
+          .d-flex.align-items-md-start.align-items-center.flex-column
+            .feature-icon.icon-blue.mb-2 
+              img(src="assets/img/icons/Target1.png", alt="Target", class="img-fluid")
+            h5.fw-bold.mb-1.text-md-start.text-center Gebruiksvriendelijke interface
+            p.text.mb-2.text-md-start.text-center Beheer je projecten eenvoudig.
+            a.btn.btn-primary.mt-auto.align-self-md-start.align-self-center.mb-5.rounded-pill(href="#feature1") Lees meer
+
+        .col-md-4.mb-4.text-md-start.text-center
+          .d-flex.align-items-md-start.align-items-center.flex-column
+            .feature-icon.icon-yellow.mb-2.mt-5.mt-md-0
+              img(src="assets/img/icons/Target2.png", alt="Target2", class="img-fluid")
+            h5.fw-bold.mb-1.text-md-start.text-center Ontwerp en print op één plek
+            p.text.mb-2.text-md-start.text-center Alles wat je nodig hebt, op één platform.
+            a.btn.btn-primary.mt-auto.align-self-md-start.align-self-center.mb-5.rounded-pill(href="#feature2") Lees meer
+
+        .col-md-4.mb-4.text-md-start.text-center
+          .d-flex.align-items-md-start.align-items-center.flex-column
+            .feature-icon.icon-pink.mb-2.mt-5.mt-md-0
+              img(src="assets/img/icons/Target3.png", alt="Target3", class="img-fluid")
+            h5.fw-bold.mb-1.text-md-start.text-center Schaal moeiteloos naar elk formaat
+            p.text.mb-2.text-md-start.text-center Van klein naar groot, zonder kwaliteitsverlies.
+            a.btn.btn-primary.mt-auto.align-self-md-start.align-self-center.mb-5.rounded-pill(href="#feature3") Lees meer
+
+
+    //- First Feature
+    .row.align-items-start.feature#feature1
+      .col-sm-6.p-2.text-start
+        h1 Gebruiksvriendelijke interface
+        p.pt-2 Onze interface is ontworpen met het oog op eenvoud en gebruiksgemak. Of je nu een beginner bent of een ervaren gebruiker, je kunt snel aan de slag zonder in te boeten op functionaliteit. Het platform biedt intuïtieve navigatie en krachtige tools die je workflow stroomlijnen, zodat je productiever kunt werken.
+      .col-sm-6.d-flex.justify-content-center
+        img(src="/assets/img/icons/icon1.png" alt="User friendly interface icon" class="img-fluid")
+
+    //- Second Feature (Feature2 with left-aligned button)
+    .row.align-items-start.feature2#feature2
+      //- Icon section
+      .col-sm-4.p-2.d-flex.justify-content-center.align-items-center.icon.icon-2
+        img(src="/assets/img/icons/icon2.png" alt="Design and print icon" class="img-fluid")
+      .col-sm-8.p-2.ps-xl-15.ps-md-custom.text-start#design
+        h1 Alles ontwerpen en printen op één centrale plek
+        p.pt-2 Met ons platform kun je het volledige proces van ontwerp tot printen beheren zonder externe tools te hoeven gebruiken. Of je nu een flyer, visitekaartje, poster of ander drukwerk wilt maken, alles wordt centraal beheerd. Ontwerp, pas aan, en print in één naadloze workflow. Dit bespaart tijd, kosten en zorgt voor een consistente kwaliteit van je projecten, van begin tot eind.
+
+    //- Third Feature
+    .row.align-items-start.feature3#feature3
+      .col-sm-6.p-2.text-start
+        h1 Schaal moeiteloos naar elk formaat
+        p.pt-2 Ons platform biedt de flexibiliteit om ontwerpen eenvoudig aan te passen aan elk formaat, of het nu gaat om kleine labels of grote banners. Dankzij geavanceerde schaalopties kun je ontwerpen zonder kwaliteitsverlies aanpassen voor print of digitale weergave. Dit maakt het ideaal voor bedrijven die consistentie en perfectie vereisen, ongeacht het formaat.
+      .col-sm-6.p-2.d-flex.justify-content-center.align-items-center.icon.icon-3
+        img(src="/assets/img/icons/icon3.png" alt="Scale to any size icon" class="img-fluid")
+
+  style.
+    .feature {
+      p {
+        font-size: 1.2rem;
+        max-width: 70%;
+      }
+      padding-bottom: 10%;
+      padding-top: 5%;
+    }
+
+    .feature2 {
+      p {
+        font-size: 1.2rem;
+      }
+
+      padding-bottom: 10%;
+    }
+
+    .feature3 {
+      p {
+        font-size: 1.2rem;
+        max-width: 70%;
+      }
+      padding-bottom: 5%;
+    }
+
+    .feature-icon {
+      width: 60px; 
+      height: 60px;
+      display: block;
+    }
+
+    h5 {
+      font-size: 1.25rem; 
+      line-height: 1.4;  
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6; 
+    }
+
+    .btn {
+      margin-top: auto; 
+    }
+
+    .mb-4 {
+      margin-bottom: 1.5rem; 
+    }
+
+    .row > .col-md-4 {
+      display: flex;
+      flex-direction: column;
+      height: 100%; 
+    }
+
+    .d-flex {
+      flex: 1;
+    }
+
+    @media (min-width: 768px) {
+      .ps-md-custom {
+        padding-left: 0rem; /* or any other value */
+      }
+    }
+
+    @media (max-width: 767px) {
+      .feature p,
+      .feature2 p,
+      .feature3 p {
+        max-width: 100%;
+      }
+    }
+
