@@ -1,0 +1,131 @@
+@import '../../node_modules/bootstrap/scss/_functions';
+@import 'theme/functions';
+
+@import '../../node_modules/bootstrap/scss/mixins';
+@import 'theme/mixins';
+
+@import 'user-variables';
+@import 'theme/variables';
+@import '../../node_modules/bootstrap/scss/variables';
+
+//
+//
+// user.scss
+//
+// Place your own theme CSS or SCSS rules below this line, these rules will override any Bootstrap and theme variables.
+
+.text-lg-start {
+    &.pt-8 {
+        padding-top: 0 !important;
+    }
+}
+
+body {
+    font-family: 'Oxygen', sans-serif; // Apply the Oxygen font globally
+  }
+  
+  // Customize other styles as needed
+   h2 {
+    font-family: 'Oxygen', sans-serif; // Apply Oxygen to headings
+  }
+
+  p {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1rem; 
+  }
+  
+  h5 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  a {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1rem; 
+  }
+
+  .btn-primary {
+    --phoenix-btn-bg: #1B6AE3;
+    --phoenix-btn-hover-bg: #0f49cf;
+  }
+
+  .btn-outline-primary {
+    --phoenix-btn-border-color: #1B6AE3;
+    --phoenix-btn-hover-bg: #1B6AE3;
+    --phoenix-btn-color: #1B6AE3;
+  }
+
+  .text-info {
+    --phoenix-info-rgb: 27, 106, 227;
+  }
+
+  .flex-1 {
+    text-decoration: underline;
+  }
+
+  :root, [data-bs-theme="light"] {
+    --phoenix-body-color: black;
+    --phoenix-body-color-rgb: 49, 55, 74;
+
+    --phoenix-body-bg: #e3e6ed;
+    --phoenix-body-bg-rgb: 245, 247, 250;
+  }
+
+  [data-bs-theme="dark"] {
+    --phoenix-body-color: #9fa6bc;
+    --phoenix-body-color-rgb: 159, 166, 188;
+
+    --phoenix-body-bg: #0f111a;
+    --phoenix-body-bg-rgb: 15, 17, 26;
+  }
+
+ 
+.card:hover {
+  border-color: blue !important;
+}
+
+
+.card.border-secondary:hover {
+  border-color: blue !important;
+}
+
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+}
+
+
+.card.border-secondary:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.accordion-button::after {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+
+.me-2 {
+  margin-left: 0 !important;
+  margin-right: 0.5rem !important;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #1B6AE3;
+}
+
+.icon-item {
+  width: 50%;
+}
+@media (min-width: 768px) {
+  .icon-item {
+    width: 100%;
+  }
+}
