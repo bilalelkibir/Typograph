@@ -1,3 +1,5 @@
+#typograph
+
 Dit project is gerealiseerd tijdens mijn stage bij Get Interactive. Het doel was om een voorpagina voor de website te ontwerpen en te ontwikkelen. Het project is uitgevoerd in samenwerking met een mede-stagiair. Hoewel het project nog niet volledig is afgerond, deel ik hierbij het resultaat dat ik tijdens mijn stageperiode heb kunnen realiseren.
 
 Over het project: 
